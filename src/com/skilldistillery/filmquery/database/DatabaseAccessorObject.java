@@ -112,7 +112,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Connection conn;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT film.* FROM film WHERE film.title REGEXP '?' OR film.description REGEXP '?';";
+			String sql = "SELECT film.* FROM film WHERE film.title REGEXP ? OR film.description REGEXP ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, keyword);
 			stmt.setString(2, keyword);
