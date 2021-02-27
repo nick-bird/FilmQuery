@@ -128,7 +128,9 @@ public class Film {
 		this.special_features = special_features;
 	}
 
-	
+	public String printFilm() {
+		return "Film: " + title + " Year Released: " + releaseYear + " Rating: " + rating + " Description: " + description;
+	}
 
 	@Override
 	public String toString() {

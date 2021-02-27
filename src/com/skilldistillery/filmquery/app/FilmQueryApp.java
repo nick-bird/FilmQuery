@@ -40,22 +40,35 @@ public class FilmQueryApp {
 			System.out.println("3. Exit");
 
 			String userInput = input.nextLine();
+			
+			Film newFilm = null;
 			switch (userInput) {
 			case "1":
 				System.out.println("Enter film ID: ");
 				int filmID = input.nextInt();
 				System.out.println("Results: ");
-				Film newFilm = db.findFilmById(filmID);
+				newFilm = db.findFilmById(filmID);
 				if (newFilm != null) {
-					System.out.println(newFilm);
+					System.out.println(newFilm.printFilm());
 				} else {
 					System.out.println("There is no film associated with this ID.");
 				}
 
 				break;
 			case "2":
+				System.out.println("Enter search keyword: ");
+				String keyword = input.nextLine();
+				System.out.println("Results: ");
+				newFilm = db.findFilmByKeyword(keyword);
+				
+				if (newFilm != null) {
+					System.out.println(newFilm.printFilm());
+				} else {
+					System.out.println("There is no film associated with this keyword.");
+				}
 				break;
 			case "3":
+				System.out.println("Goodbye");
 				keepMenu = false;
 				break;
 			default:

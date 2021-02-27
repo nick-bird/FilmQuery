@@ -106,4 +106,40 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return actorsInFilm;
 	}
 
+	@Override
+	public Film findFilmByKeyword(String keyword) {
+		Film film = null;
+		Connection conn;
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT film.* FROM film WHERE film.title REGEXP '?' OR film.description REGEXP '?';";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, keyword);
+			stmt.setString(2, keyword);
+			
+			ResultSet filmResult = stmt.executeQuery();
+			if (filmResult.next()) {
+				film = new Film();
+				film.setId(filmResult.getInt("id"));
+				film.setTitle(filmResult.getString("title"));
+				film.setDescription(filmResult.getString("description"));
+				film.setReleaseYear(filmResult.getString("release_year"));
+				film.setLanguageId(filmResult.getInt("language_id"));
+				film.setRentalDuration(filmResult.getInt("rental_duration"));
+				film.setRentalRate(filmResult.getDouble("rental_rate"));
+				film.setLength(filmResult.getInt("length"));
+				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+				film.setRating(filmResult.getString("rating"));
+				film.setSpecial_features(filmResult.getString("special_features"));
+				film.setActors(findActorsByFilmId(film.getId()));
+			}
+			filmResult.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return film;
+	}
+
 }
