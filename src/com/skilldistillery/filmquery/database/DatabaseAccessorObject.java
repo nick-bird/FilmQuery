@@ -107,8 +107,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film findFilmByKeyword(String keyword) {
+	public List<Film> findFilmByKeyword(String keyword) {
 		Film film = null;
+		List<Film> films = new ArrayList<>();
 		Connection conn;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -118,7 +119,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setString(2, keyword);
 			
 			ResultSet filmResult = stmt.executeQuery();
-			if (filmResult.next()) {
+			while (filmResult.next()) {
 				film = new Film();
 				film.setId(filmResult.getInt("id"));
 				film.setTitle(filmResult.getString("title"));
@@ -132,6 +133,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecial_features(filmResult.getString("special_features"));
 				film.setActors(findActorsByFilmId(film.getId()));
+				films.add(film);
 			}
 			filmResult.close();
 			stmt.close();
@@ -139,7 +141,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return film;
+		return films;
 	}
 
 }

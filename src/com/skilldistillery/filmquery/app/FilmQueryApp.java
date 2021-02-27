@@ -1,5 +1,7 @@
 package com.skilldistillery.filmquery.app;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
@@ -42,6 +44,7 @@ public class FilmQueryApp {
 			String userInput = input.nextLine();
 			
 			Film newFilm = null;
+			List<Film> films = new ArrayList<>();
 			switch (userInput) {
 			case "1":
 				System.out.println("Enter film ID: ");
@@ -59,12 +62,14 @@ public class FilmQueryApp {
 				System.out.println("Enter search keyword: ");
 				String keyword = input.nextLine();
 				System.out.println("Results: ");
-				newFilm = db.findFilmByKeyword(keyword);
+				films = db.findFilmByKeyword(keyword);
 				
-				if (newFilm != null) {
-					System.out.println(newFilm.printFilm());
-				} else {
+				if (films.isEmpty()) {
 					System.out.println("There is no film associated with this keyword.");
+				} else {
+					for(int i = 0; i < films.size(); i++) {
+						System.out.println(films.get(i).printFilm());
+					}
 				}
 				break;
 			case "3":
