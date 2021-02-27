@@ -53,6 +53,7 @@ public class FilmQueryApp {
 				newFilm = db.findFilmById(filmID);
 				if (newFilm != null) {
 					System.out.println(newFilm.printFilm());
+					input.nextLine();
 				} else {
 					System.out.println("There is no film associated with this ID.");
 				}
