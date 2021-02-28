@@ -81,7 +81,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
 		List<Actor> actorsInFilm = new ArrayList<>();
-		
+
 		Actor actor = null;
 		Connection conn;
 		try {
@@ -103,7 +103,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return actorsInFilm;
 	}
 
@@ -118,7 +118,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, keyword);
 			stmt.setString(2, keyword);
-			
+
 			ResultSet filmResult = stmt.executeQuery();
 			while (filmResult.next()) {
 				film = new Film();

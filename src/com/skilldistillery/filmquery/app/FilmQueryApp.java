@@ -14,8 +14,8 @@ public class FilmQueryApp {
 
 	public static void main(String[] args) {
 		FilmQueryApp app = new FilmQueryApp();
-	//	app.test();
-    app.launch();
+		// app.test();
+		app.launch();
 	}
 
 	private void test() {
@@ -42,7 +42,7 @@ public class FilmQueryApp {
 			System.out.println("3. Exit");
 
 			String userInput = input.nextLine();
-			
+
 			Film newFilm = null;
 			List<Film> films = new ArrayList<>();
 			switch (userInput) {
@@ -65,11 +65,11 @@ public class FilmQueryApp {
 				String keyword = input.nextLine();
 				System.out.println("Results: ");
 				films = db.findFilmByKeyword(keyword);
-				
+
 				if (films.isEmpty()) {
 					System.out.println("There is no film associated with this keyword.");
 				} else {
-					for(int i = 0; i < films.size(); i++) {
+					for (int i = 0; i < films.size(); i++) {
 						System.out.println(films.get(i).printFilm());
 					}
 				}
