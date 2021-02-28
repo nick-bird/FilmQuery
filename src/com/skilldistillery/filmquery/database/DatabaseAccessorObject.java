@@ -113,7 +113,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Connection conn;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT film.* FROM film WHERE film.title REGEXP ? OR film.description REGEXP ?;";
+			String sql = "SELECT film.*, language.* FROM film JOIN language ON film.language_id = language.id WHERE film.title REGEXP ? OR film.description REGEXP ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, keyword);
 			stmt.setString(2, keyword);
@@ -133,6 +133,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecial_features(filmResult.getString("special_features"));
 				film.setActors(findActorsByFilmId(film.getId()));
+				film.setLanguage(filmResult.getString("name"));
 				films.add(film);
 			}
 			filmResult.close();

@@ -138,7 +138,7 @@ public class Film {
 	}
 
 	public String printFilm() {
-		return "Film: " + title + " Year Released: " + releaseYear + " Rating: " + rating + " Description: " + description;
+		return "Film: " + title + " Year Released: " + releaseYear + " Rating: " + rating + " Description: " + description + " Language: " + language;
 	}
 
 	@Override
