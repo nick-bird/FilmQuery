@@ -1,6 +1,7 @@
 package com.skilldistillery.filmquery.entities;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Film {
@@ -138,7 +139,15 @@ public class Film {
 	}
 
 	public String printFilm() {
-		return "Film: " + title + " Year Released: " + releaseYear + " Rating: " + rating + " Description: " + description + " Language: " + language;
+		return "Film: " + title + " Year Released: " + releaseYear + " Rating: " + rating + " Description: " + description + " Language: " + language + " " + printActors();
+	}
+	
+	public StringBuilder printActors() {
+		StringBuilder sb  = new StringBuilder("Actors in Cast:\n");
+		for(Actor actor : actors) {
+			sb.append(actor.getFirstName() + " " + actor.getLastName() + ", ");
+		}
+		return sb;
 	}
 
 	@Override

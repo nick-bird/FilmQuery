@@ -55,6 +55,7 @@ public class FilmQueryApp {
 					System.out.println(newFilm.printFilm());
 					input.nextLine();
 				} else {
+					input.nextLine();
 					System.out.println("There is no film associated with this ID.");
 				}
 
