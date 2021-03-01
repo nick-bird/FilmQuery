@@ -3,4 +3,4 @@ This project is a terminal-line application which allows a user to search and di
 
 
 ### Technologies Used
-This program uses JDBC technology to interface with a MySQL database. The program uses a DataBase Accessor class to retrieve information based on SQL queries, customized by user input. The data is stored in objects defined by entity classes so that it can be displayed. User input and information display is all handled in a main App class to allow proper separation of concerns and encapsulation. 
+This program uses JDBC technology with Maven to interface with a MySQL database. The program uses a DataBase Accessor class to retrieve information based on SQL queries, customized by user input. The data is stored in objects defined by entity classes so that it can be displayed. User input and information display is all handled in a main App class to allow proper separation of concerns and encapsulation. 
